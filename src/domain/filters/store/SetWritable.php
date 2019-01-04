@@ -5,6 +5,7 @@ namespace yii2lab\init\domain\filters\store;
 use yii2lab\extension\console\helpers\Error;
 use yii2lab\extension\console\helpers\Output;
 use yii2lab\extension\scenario\base\BaseScenario;
+use yii2lab\extension\yii\helpers\FileHelper;
 use yii2lab\init\domain\helpers\FileSystemHelper;
 
 class SetWritable extends BaseScenario {
@@ -40,7 +41,8 @@ class SetWritable extends BaseScenario {
 					Error::line("Operation chmod not permitted for directory $writable.");
 				}
 			} else {
-				Error::line("Directory $writable does not exist.");
+			    FileHelper::createDirectory($writable);
+				//Error::line("Directory $writable does not exist.");
 			}
 		}
 	}
