@@ -2,6 +2,7 @@
 
 namespace yii2lab\init\console\controllers;
 
+use yii2lab\app\domain\helpers\EnvService;
 use yii2lab\extension\console\base\Controller;
 use yii2lab\init\domain\helpers\Environments;
 use yii2lab\extension\console\helpers\Output;
@@ -16,7 +17,7 @@ class EnvironmentsController extends Controller
 	public function actionIndex($option = null)
 	{
 		$option = Question::displayWithQuit('Select operation', ['Update', 'Delete'], $option);
-		$project = env('project');
+		$project = EnvService::get('project');
 		if($option == 'u') {
 			//Question::confirm('Do are you sure update?', 1);
 			$projectInput = Question::displayWithQuit('Select project', ['common', $project]);
