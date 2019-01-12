@@ -4,6 +4,7 @@ namespace yii2lab\init\domain\helpers;
 
 use yii\helpers\Inflector;
 use yii2lab\extension\console\helpers\Output;
+use yii2lab\extension\scenario\collections\ScenarioCollection;
 use yii2lab\extension\scenario\helpers\ScenarioHelper;
 
 class Filter {
@@ -31,7 +32,8 @@ class Filter {
 				Output::pipe($title);
 				Output::line();
 			}
-			$config = ScenarioHelper::run($definition, $config);
+			$filterCollection = new ScenarioCollection($definition);
+			$config = $filterCollection->runAll($config);
 		}
 		return $config;
 	}
